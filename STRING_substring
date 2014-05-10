@@ -1,0 +1,47 @@
+#include<stdio.h>
+
+int is_substring(char *str, char *sub);
+
+int main()
+{
+    char *string = "This is the main string!";
+    puts(string);
+    char *sub = "the";
+    printf("\nSearch string: %s \n\n", sub);
+    int pos = is_substring(string, sub);
+    if(pos != -1)
+         printf("The search string is a substring and the index position is: %d ", pos);
+    else
+         puts("Not a substring!");
+          
+    getch();
+    return 0;    
+}
+
+int is_substring(char *str, char *sub) // or directly use strstr(str, sub) which is a library function
+{
+    int len_str, len_sub,i , j;
+    len_str = strlen(str);
+    len_sub = strlen(sub);
+    if(len_str < len_sub)
+               return -1;
+               
+    for(i = 0; i < len_str - len_sub; i++)
+    {
+        int j;
+        for(j = 0; j < len_sub; j++)
+        {
+              if(str[i + j] != sub[j])
+                       break;      
+        }      
+        if(j == len_sub)
+             return i;
+    }
+    
+    return -1;
+    
+}
+
+
+
+
